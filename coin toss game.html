@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Coin Toss Game</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: aliceblue;
+      margin-top: 50px;
+    }
+    h1 {
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🪙 Coin Toss Game</h1>
+  <p>Choose your side:</p>
+
+  <button onclick="play('heads')">Heads</button>
+  <button onclick="play('tails')">Tails</button>
+
+  <div id="result"></div>
+
+  <script>
+    function play(userChoice) {
+      const options = ['heads', 'tails'];
+      const computerChoice = options[Math.floor(Math.random() * 2)];
+
+      let message = `You chose ${userChoice}.<br>Coin landed on ${computerChoice}.<br>`;
+
+      if (userChoice === computerChoice) {
+        message += "<span style='color: green;'>You win! 🎉</span>";
+      } else {
+        message += "<span style='color: red;'>You lose! 😞</span>";
+      }
+
+      document.getElementById('result').innerHTML = message;
+    }
+  </script>
+</body>
+</html>

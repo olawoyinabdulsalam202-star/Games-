@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Guess The Number</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #57abf5;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+
+    #message {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 Guess The Number!</h1>
+  <p>I'm thinking of a number between <strong>1 and 100</strong>. Can you guess it?</p>
+  
+  <input type="number" id="guessInput" placeholder="Enter your guess" />
+  <button onclick="checkGuess()">Guess</button>
+  
+  <p id="message"></p>
+  <p>Attempts: <span id="attempts">0</span></p>
+  
+  <button onclick="resetGame()">Restart</button>
+
+  <script>
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const userGuess = document.getElementById("guessInput").value;
+      const message = document.getElementById("message");
+      const attemptsDisplay = document.getElementById("attempts");
+      
+      attempts++;
+      attemptsDisplay.textContent = attempts;
+
+      if (userGuess == randomNumber) {
+        message.textContent = "🎉 Correct! You guessed the number!";
+        message.style.color = "green";
+      } else if (userGuess < randomNumber) {
+        message.textContent = "Too low! Try again.";
+        message.style.color = "red";
+      } else if (userGuess > randomNumber) {
+        message.textContent = "Too high! Try again.";
+        message.style.color = "red";
+      }
+    }
+
+    function resetGame() {
+      randomNumber = Math.floor(Math.random() * 100) + 1;
+      attempts = 0;
+      document.getElementById("attempts").textContent = attempts;
+      document.getElementById("message").textContent = "";
+      document.getElementById("guessInput").value = "";
+    }
+  </script>
+</body>
+</html>
